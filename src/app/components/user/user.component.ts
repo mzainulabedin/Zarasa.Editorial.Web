@@ -1,4 +1,4 @@
-import { Component, Inject, Injectable, OnInit, HostBinding, ViewChild } from '@angular/core';
+import { Component, Inject, Injectable, OnInit, HostBinding, ViewChild, Output, EventEmitter } from '@angular/core';
 import { Router} from '@angular/router';
 import { Http } from '@angular/http';
 import { fadeInAnimation } from '../../animations/fade-in-animation';
@@ -6,7 +6,7 @@ import { ErrorResponse } from '../../common/error-response';
 import { EntityResponse } from '../../common/entity-response';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/user';
-import { BsModalComponent } from 'ng2-bs3-modal';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
     selector: 'app-user',
@@ -22,8 +22,6 @@ export class UserComponent implements OnInit {
     public statusMessage: string;
     public errorResponse: ErrorResponse;
     public selectedId: number;
-    @ViewChild('myModal')
-    modal: BsModalComponent;
 
     @HostBinding('@fadeInAnimation') fadeInAnimation = true;
     @HostBinding('style.display') display = 'block';
@@ -32,7 +30,7 @@ export class UserComponent implements OnInit {
     constructor(
       private userService: UserService,
       private router: Router,
-      private elRef: BsModalComponent) {
+      private modalService: ModalService) {
     }
 
     ngOnInit(): void {
@@ -40,7 +38,6 @@ export class UserComponent implements OnInit {
     }
 
     gotoDetail(id: number): void {
-        // this.selectedUser = user;
         this.router.navigate(['/user-detail', id]);
     }
 
@@ -49,22 +46,22 @@ export class UserComponent implements OnInit {
     }
 
     delete(id: number): void {
-      this.modal.open();
-      // this.modalService.confirm('i am  modal');
-      this.modal.onClose.subscribe(result => {
-        this.userService.delete(id).subscribe((entityResponse: EntityResponse<User>) => {
-          this.statusMessage = entityResponse.message;
-          $('.alert-success').fadeIn().show().delay(5000).fadeOut();
-          this.getUsers();
-        }, (error: Error) => {
-          this.errorResponse = new ErrorResponse(error);
-          this.statusMessage = this.errorResponse.message;
-          $('.alert-danger').fadeIn().show().delay(5000).fadeOut();
-        });
+      this.modalService.confirmationDialog('Are you sure you want to save this record?')
+      .show()
+      .getAction().take(1).subscribe(response => {
+        if (response === ModalService.YES) {
+          this.userService.delete(id).subscribe((entityResponse: EntityResponse<User>) => {
+            this.statusMessage = entityResponse.message;
+            $('.alert-success').fadeIn().show().delay(5000).fadeOut();
+            this.getUsers();
+          }, (error: Error) => {
+            this.errorResponse = new ErrorResponse(error);
+            this.statusMessage = this.errorResponse.message;
+            $('.alert-danger').fadeIn().show().delay(5000).fadeOut();
+          });
+        }
       });
     }
-
-
 }
 
 

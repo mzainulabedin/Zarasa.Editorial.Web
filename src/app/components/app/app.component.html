@@ -8,15 +8,5 @@
         </div>
     </div>
 </div>
-<bs-modal #myModal>
-    <bs-modal-header [showDismiss]="true">
-        <h4 class="modal-title">I'm a modal!</h4>
-    </bs-modal-header>
-    <bs-modal-body>
-        Are you sure you want to delete!
-    </bs-modal-body>
-    <bs-modal-footer>
-        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="myModal.dismiss()">Cancel</button>
-        <button type="button" class="btn btn-primary" (click)="myModal.close()">Ok</button>
-    </bs-modal-footer>
-</bs-modal>
+<!-- Modal -->
+<app-modal></app-modal>

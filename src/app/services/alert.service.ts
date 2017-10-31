@@ -48,7 +48,12 @@ export class AlertService {
 
     alert(type: AlertType, message: string, keepAfterRouteChange = false) {
         this.keepAfterRouteChange = keepAfterRouteChange;
-        this.subject.next(<Alert>{ type: type, message: message });
+        const alert = <Alert>{ type: type, message: message, visible: true };
+        this.subject.next(alert);
+        setTimeout(() => {
+          alert.visible = false;
+          this.subject.next(alert);
+        }, 6000);
     }
 
     clear() {

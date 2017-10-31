@@ -1,10 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { Alert, AlertType } from '../models/alert';
 import { AlertService } from '../services/alert.service';
+import { trigger, transition, animate, style } from '@angular/animations';
+import { keyframes } from '@angular/core/src/animation/dsl';
 
 @Component({
     selector: 'app-alert',
     templateUrl: './alert.component.html',
+    animations: [trigger('alertAnimation', [
+      transition(':enter', [
+        style({opacity: 0, transform: 'translateY(20px)'}),
+        animate('.3s', style({opacity: 1, transform: 'translateY(0)'}))
+      ]),
+      transition(':leave', [
+        style({opacity: 1, transform: 'translateY(0)'}),
+        animate('.3s', style({opacity: 0, transform: 'translateY(20px)'}))
+      ])
+    ])]
 })
 export class AlertComponent implements OnInit {
   public statusMessage: string;
@@ -19,9 +31,14 @@ export class AlertComponent implements OnInit {
                   this.alerts = [];
                   return;
               }
+              if (!alert.visible) {
+                this.removeAlert(alert);
+              } else {
+                this.alerts.push(alert);
+              }
 
               // add alert to array
-              this.alerts.push(alert);
+
           });
       }
 

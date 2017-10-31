@@ -1,8 +1,7 @@
-
 <div *ngIf="user">
-    <h2>User Detail</h2>
-    <app-alert></app-alert>
-    <!-- <div  class="alert alert-danger alert-dismissable" style="display: none;">
+  <h2>User Detail</h2>
+  <app-alert></app-alert>
+  <!-- <div  class="alert alert-danger alert-dismissable" style="display: none;">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
       <b>{{statusMessage}}</b>
         <ul *ngIf="errorResponse">
@@ -13,17 +12,19 @@
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
       {{statusMessage}}
     </div> -->
-    <!-- <div *ngIf="isError" class="alert alert-danger">{{statusMessage}}</div>
+  <!-- <div *ngIf="isError" class="alert alert-danger">{{statusMessage}}</div>
     <div *ngIf="isSuccess" class="alert alert-success">{{statusMessage}}</div> -->
-    <div>
-      <label>id: </label>{{user.id}}
-    </div>
-    <div>
-      <label>name: </label>
+  <div>
+    <label>id: </label>{{user.id}}
+  </div>
+  <div>
+    <label>name: </label>
+    <div class="input-group">
       <input [(ngModel)]="user.first_name" placeholder="First Name" />
       <input [(ngModel)]="user.last_name" placeholder="Last Name" />
       <input [(ngModel)]="user.email" placeholder="Email Address" />
     </div>
-    <button (click)="save()" class="btn btn-success" >Save</button>
-    <button (click)="goBack()" class="btn btn-default">Back</button>
   </div>
+  <button (click)="save()" class="btn btn-success">Save</button>
+  <button (click)="goBack()" class="btn btn-default">Back</button>
+</div>

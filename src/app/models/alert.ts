@@ -1,6 +1,7 @@
 export class Alert {
   type: AlertType;
   message: string;
+  visible = true;
 }
 
 export enum AlertType {

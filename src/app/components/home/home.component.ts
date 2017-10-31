@@ -6,8 +6,7 @@ import { fadeInAnimation } from '../../animations/fade-in-animation';
     templateUrl: './home.component.html',
     animations: [fadeInAnimation]
 })
-// export class HomeComponent {
-// }
+
 export class HomeComponent  {
   @HostBinding('@fadeInAnimation') fadeInAnimation = true;
   @HostBinding('style.display') display = 'block';

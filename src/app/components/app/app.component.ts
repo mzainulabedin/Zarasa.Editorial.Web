@@ -14,4 +14,5 @@ export class AppComponent {
     getRouteAnimation(outlet) {
       return outlet.activatedRouteData.depth;
     }
+
 }

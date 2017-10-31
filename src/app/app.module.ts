@@ -16,16 +16,15 @@ import { AlertComponent } from './directives/alert.component';
 import { AlertService } from './services/alert.service';
 import { UserService } from './services/user.service';
 import { BsModalComponent, BsModalBodyComponent, BsModalHeaderComponent, BsModalFooterComponent, BsModalService } from 'ng2-bs3-modal';
+import { ModalComponent } from './directives/modal.component';
+import { ModalService } from './services/modal.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
     AlertComponent,
-    BsModalComponent,
-    BsModalBodyComponent,
-    BsModalHeaderComponent,
-    BsModalFooterComponent,
+    ModalComponent,
 
     HomeComponent,
     UserComponent,
@@ -43,7 +42,7 @@ import { BsModalComponent, BsModalBodyComponent, BsModalHeaderComponent, BsModal
     { provide: 'BASE_URL', useFactory: getBaseUrl },
     AlertService,
     UserService,
-    BsModalService
+    ModalService
   ],
   bootstrap: [
     AppComponent
