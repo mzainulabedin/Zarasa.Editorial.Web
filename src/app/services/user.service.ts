@@ -24,7 +24,8 @@ export class UserService extends EntityService {
   }
 
     getUsers(): Observable<EntityResponse<User[]>> {
-        return this.get(this.getBaseUrl() + 'api/user')
+      const options = new RequestOptions({ headers: this.getJsonAuthHeader() });
+        return this.get(this.getBaseUrl() + 'api/user', options)
         .map(response => response)
         .catch((error: any) => Observable.throw(error.json().message || 'Server error'));
     }
@@ -33,9 +34,7 @@ export class UserService extends EntityService {
         const options = new RequestOptions({ headers: this.getJsonAuthHeader() });
         return this.get(this.getBaseUrl() + 'api/user/' + id, options)
         .map(response => response)
-        .catch((error: any) => {
-          return Observable.throw(error);
-        });
+        .catch((error: any) => Observable.throw(error));
     }
 
     // getUser(id: number): Observable<EntityResponse<User>> {
@@ -53,32 +52,27 @@ export class UserService extends EntityService {
     // }
 
     insert(user: User): Observable<EntityResponse<User>> {
-        // if(user == null) console.info("user not exits"); else console.info(JSON.stringify(user));
-        const header = new Headers({ 'Content-Type': 'application/json' });
-
-        const options = new RequestOptions({ headers: header });
-        return this.http.post(this.getBaseUrl() + `api/user/`, JSON.stringify(user), options)
-        .map(response => response.json())
-        .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+        const options = new RequestOptions({ headers: this.getJsonAuthHeader() });
+        return this.post(this.getBaseUrl() + `api/user/`, user, options)
+        .map(response => response)
+        .catch((error: any) => Observable.throw(error));
         // return new Observable<User>();
     }
 
     update(user: User): Observable<EntityResponse<User>> {
-        const header = new Headers({ 'Content-Type': 'application/json' });
-        const options = new RequestOptions({ headers: header });
-        return this.http.put(this.getBaseUrl() + `api/user/` + user.id, JSON.stringify(user), options)
-        .map(response => response.json())
-        .catch(error => Observable.throw(error.json() || 'Server error'));
+        const options = new RequestOptions({ headers: this.getJsonAuthHeader() });
+        return this.put(this.getBaseUrl() + `api/user/` + user.id, user, options)
+        .map(response => response)
+        .catch(error => Observable.throw(error));
 
         // return new Observable<User>();
     }
 
-    delete(id: number): Observable<EntityResponse<User>> {
-      const header = new Headers({ 'Content-Type': 'application/json' });
-      const options = new RequestOptions({ headers: header });
-      return this.http.delete(this.getBaseUrl() + `api/user/` + id, options)
-      .map(response => response.json())
-      .catch(error => Observable.throw(error.json() || 'Server error'));
+    remove(id: number): Observable<EntityResponse<User>> {
+      const options = new RequestOptions({ headers: this.getJsonAuthHeader() });
+      return this.delete(this.getBaseUrl() + `api/user/` + id, options)
+      .map(response => response)
+      .catch(error => Observable.throw(error));
     }
 
 

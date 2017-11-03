@@ -50,7 +50,7 @@ export class UserComponent implements OnInit {
       .show()
       .getAction().take(1).subscribe(response => {
         if (response === ModalService.YES) {
-          this.userService.delete(id).subscribe((entityResponse: EntityResponse<User>) => {
+          this.userService.remove(id).subscribe((entityResponse: EntityResponse<User>) => {
             this.statusMessage = entityResponse.message;
             $('.alert-success').fadeIn().show().delay(5000).fadeOut();
             this.getUsers();

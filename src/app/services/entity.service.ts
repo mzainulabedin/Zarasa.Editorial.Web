@@ -31,4 +31,31 @@ export abstract class EntityService {
         return Observable.throw(error.json().message || 'Server error');
       });
   }
+
+  post(url: string, body: any, options?: RequestOptionsArgs): Observable<EntityResponse<any>> {
+    return this.http1.post(url, JSON.stringify(body), options)
+    .map(response => response.json())
+    .catch((error: any) => {
+      if (error.status === 401) { this.router1.navigate(['/login']); }
+      return Observable.throw(error.json().message || 'Server error');
+    });
+  }
+
+  put(url: string, body: any, options?: RequestOptionsArgs): Observable<EntityResponse<any>> {
+    return this.http1.put(url, JSON.stringify(body), options)
+    .map(response => response.json())
+    .catch((error: any) => {
+      if (error.status === 401) { this.router1.navigate(['/login']); }
+      return Observable.throw(error.json().message || 'Server error');
+    });
+  }
+
+  delete(url: string, options?: RequestOptionsArgs): Observable<EntityResponse<any>> {
+    return this.http1.delete(url, options)
+    .map(response => response.json())
+    .catch((error: any) => {
+      if (error.status === 401) { this.router1.navigate(['/login']); }
+      return Observable.throw(error.json().message || 'Server error');
+    });
+  }
 }
