@@ -1,0 +1,27 @@
+
+<div class="login-box" ngNativeValidate >
+  <div class="login-logo">
+    <a>
+      <b>Admin Console</b>
+      <br/>
+      Editorial
+    </a>
+  </div>
+  <form (ngSubmit)="signIn()" #testForm="ngForm" ngNativeValidate>
+  <div class="input-group">
+    <input name="email" type="email" class="form-control" [(ngModel)]="loginCredential.email" required pattern=".{5,100}" title="5 to 100 characters" placeholder="Enter you email ...." />
+    <span class="input-group-addon" title="Enter your valid email address"><i class="glyphicon glyphicon-envelope"></i></span>
+  </div>
+  <div class="input-group">
+    <input name="password" type="password" class="form-control" [(ngModel)]="loginCredential.password" required pattern=".{6,30}" title="6 to 30 characters" placeholder="Enter your password ...."/>
+    <span class="input-group-addon" title="Enter your password"><i class="glyphicon glyphicon-lock"></i></span>
+  </div>
+  <div>
+    <button type="submit" class="btn btn-default" >Sign In</button>
+  </div>
+</form>
+</div>
+<div class="alert-container">
+  <app-alert></app-alert>
+</div>
+

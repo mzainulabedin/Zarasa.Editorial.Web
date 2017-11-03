@@ -18,17 +18,28 @@ import { UserService } from './services/user.service';
 import { BsModalComponent, BsModalBodyComponent, BsModalHeaderComponent, BsModalFooterComponent, BsModalService } from 'ng2-bs3-modal';
 import { ModalComponent } from './directives/modal.component';
 import { ModalService } from './services/modal.service';
+import { LoginComponent } from './components/auth/login.component';
+import { NavBarComponent } from './components/layouts/navbar.component';
+import { AuthService } from './services/auth.service';
+import { AuthGuard } from './auth.guard';
+import { AdminComponent } from './admin/components/app/admin.component';
+import { AdminHomeComponent } from './admin/components/home/admin.home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    NavBarComponent,
     NavMenuComponent,
     AlertComponent,
     ModalComponent,
 
     HomeComponent,
+    LoginComponent,
     UserComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    AdminComponent,
+    AdminHomeComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -40,7 +51,9 @@ import { ModalService } from './services/modal.service';
   ],
   providers: [
     { provide: 'BASE_URL', useFactory: getBaseUrl },
+    AuthGuard,
     AlertService,
+    AuthService,
     UserService,
     ModalService
   ],

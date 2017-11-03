@@ -5,6 +5,7 @@ import { Subject } from 'rxjs/Subject';
 
 import { Alert, AlertType } from '../models/alert';
 import { Observable } from 'rxjs/Observable';
+import { ErrorResponse } from '../common/error-response';
 
 @Injectable()
 export class AlertService {
@@ -38,6 +39,10 @@ export class AlertService {
         this.alert(AlertType.Error, message, keepAfterRouteChange);
     }
 
+    errorResponse(errorResponse: ErrorResponse, keepAfterRouteChange = false) {
+      this.errorAlert(errorResponse, keepAfterRouteChange);
+    }
+
     info(message: string, keepAfterRouteChange = false) {
         this.alert(AlertType.Info, message, keepAfterRouteChange);
     }
@@ -54,6 +59,17 @@ export class AlertService {
           alert.visible = false;
           this.subject.next(alert);
         }, 6000);
+    }
+
+    errorAlert(errorResponse: ErrorResponse, keepAfterRouteChange = false) {
+        this.keepAfterRouteChange = keepAfterRouteChange;
+        const alert = <Alert>{ type: AlertType.Error, message: errorResponse.message, visible: true,
+          errors: errorResponse.errors };
+        this.subject.next(alert);
+        setTimeout(() => {
+          alert.visible = false;
+          this.subject.next(alert);
+        }, 60000);
     }
 
     clear() {
