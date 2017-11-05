@@ -19,9 +19,10 @@ import { EntityService } from './entity.service';
 @Injectable()
 export class UserService extends EntityService {
 
-  constructor(private http: Http, private router: Router, private authService: AuthService) {
-     super(http, router, authService);
+  constructor(protected http: Http, protected router: Router, protected authService: AuthService) {
+    super(http, router, authService);
   }
+
 
     getUsers(): Observable<EntityResponse<User[]>> {
       const options = new RequestOptions({ headers: this.getJsonAuthHeader() });
@@ -36,20 +37,6 @@ export class UserService extends EntityService {
         .map(response => response)
         .catch((error: any) => Observable.throw(error));
     }
-
-    // getUser(id: number): Observable<EntityResponse<User>> {
-    //   const headers: Headers = new Headers();
-    //   headers.append('Content-Type', 'application/json');
-    //   headers.append('Authorization', 'Bearer ' + this.authService.token);
-    //   const options = new RequestOptions({ headers: headers });
-
-    //     return this.http.get(this.baseUrl + 'api/user/' + id, options)
-    //     .map(response => response.json())
-    //     .catch((error: any) => {
-    //       if (error.status === 401) { this.router.navigate(['/login']); }
-    //       return Observable.throw(error.json().message || 'Server error');
-    //     });
-    // }
 
     insert(user: User): Observable<EntityResponse<User>> {
         const options = new RequestOptions({ headers: this.getJsonAuthHeader() });
