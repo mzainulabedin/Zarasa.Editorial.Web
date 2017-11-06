@@ -6,11 +6,11 @@ import { Location } from '@angular/common';
 import 'rxjs/add/operator/switchMap';
 
 import * as $ from 'jquery';
-import { ErrorResponse } from '../../common/error-response';
-import { EntityResponse } from '../../common/entity-response';
+import { ErrorResponse } from '../../../common/error-response';
+import { EntityResponse } from '../../../common/entity-response';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/user';
-import { AlertService } from '../../services/alert.service';
+import { AlertService } from '../../../services/alert.service';
 
 @Component({
   selector: 'app-user-detail',

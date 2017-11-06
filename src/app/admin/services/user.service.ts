@@ -8,11 +8,13 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
-import { EntityResponse } from '../common/entity-response';
+import { EntityResponse } from '../../common/entity-response';
 import { User } from '../models/user';
-import { AuthService } from './auth.service';
+
 import { Router } from '@angular/router';
-import { EntityService } from './entity.service';
+import { EntityService } from '../../services/entity.service';
+import { AuthService } from '../../services/auth.service';
+
 
 
 

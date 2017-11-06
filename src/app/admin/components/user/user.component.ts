@@ -1,13 +1,13 @@
 import { Component, Inject, Injectable, OnInit, HostBinding, ViewChild, Output, EventEmitter } from '@angular/core';
 import { Router} from '@angular/router';
 import { Http } from '@angular/http';
-import { fadeInAnimation } from '../../animations/fade-in-animation';
-import { ErrorResponse } from '../../common/error-response';
-import { EntityResponse } from '../../common/entity-response';
+import { fadeInAnimation } from '../../../animations/fade-in-animation';
+import { ErrorResponse } from '../../../common/error-response';
+import { EntityResponse } from '../../../common/entity-response';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/user';
-import { ModalService } from '../../services/modal.service';
-import { AlertService } from '../../services/alert.service';
+import { ModalService } from '../../../services/modal.service';
+import { AlertService } from '../../../services/alert.service';
 
 @Component({
     selector: 'app-user',
