@@ -7,6 +7,7 @@ import { EntityResponse } from '../../common/entity-response';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/user';
 import { ModalService } from '../../services/modal.service';
+import { AlertService } from '../../services/alert.service';
 
 @Component({
     selector: 'app-user',
@@ -17,10 +18,10 @@ import { ModalService } from '../../services/modal.service';
 })
 export class UserComponent implements OnInit {
 
-    public title = 'Tour of Heroes';
+    public title = 'User Management';
     public users: User[];
-    public statusMessage: string;
-    public errorResponse: ErrorResponse;
+    // public statusMessage: string;
+    // public errorResponse: ErrorResponse;
     public selectedId: number;
 
     @HostBinding('@fadeInAnimation') fadeInAnimation = true;
@@ -30,7 +31,8 @@ export class UserComponent implements OnInit {
     constructor(
       private userService: UserService,
       private router: Router,
-      private modalService: ModalService) {
+      private modalService: ModalService,
+      private alertService: AlertService) {
     }
 
     ngOnInit(): void {
@@ -51,13 +53,15 @@ export class UserComponent implements OnInit {
       .getAction().take(1).subscribe(response => {
         if (response === ModalService.YES) {
           this.userService.remove(id).subscribe((entityResponse: EntityResponse<User>) => {
-            this.statusMessage = entityResponse.message;
-            $('.alert-success').fadeIn().show().delay(5000).fadeOut();
+            // this.statusMessage = entityResponse.message;
+            // $('.alert-success').fadeIn().show().delay(5000).fadeOut();
+            this.alertService.success(entityResponse.message);
             this.getUsers();
           }, (error: Error) => {
-            this.errorResponse = new ErrorResponse(error);
-            this.statusMessage = this.errorResponse.message;
-            $('.alert-danger').fadeIn().show().delay(5000).fadeOut();
+            // this.errorResponse = new ErrorResponse(error);
+            // this.statusMessage = this.errorResponse.message;
+            this.alertService.errorResponse(new ErrorResponse(error));
+            // $('.alert-danger').fadeIn().show().delay(5000).fadeOut();
           });
         }
       });

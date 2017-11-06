@@ -33,11 +33,12 @@ export abstract class EntityService {
   }
 
   post(url: string, body: any, options?: RequestOptionsArgs): Observable<EntityResponse<any>> {
+    // console.info(JSON.stringify(body));
     return this.http.post(url, JSON.stringify(body), options)
     .map(response => response.json())
     .catch((error: any) => {
       if (error.status === 401) { this.router.navigate(['/login']); }
-      return Observable.throw(error.json().message || 'Server error');
+      return Observable.throw(error.json() || 'Server error');
     });
   }
 

@@ -69,7 +69,7 @@ export class AlertService {
         setTimeout(() => {
           alert.visible = false;
           this.subject.next(alert);
-        }, 60000);
+        }, 6000);
     }
 
     clear() {

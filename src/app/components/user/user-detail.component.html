@@ -20,9 +20,13 @@
   <div>
     <label>name: </label>
     <div class="input-group">
-      <input [(ngModel)]="user.first_name" placeholder="First Name" />
-      <input [(ngModel)]="user.last_name" placeholder="Last Name" />
-      <input [(ngModel)]="user.email" placeholder="Email Address" />
+      <input [(ngModel)]="user.first_name" placeholder="First Name" required />
+      <input [(ngModel)]="user.last_name" placeholder="Last Name" required />
+      <input type="email" [(ngModel)]="user.email" placeholder="Email Address" required />
+    </div>
+    <div *ngIf="isNewRecord" class="input-group">
+        <input type="password" [(ngModel)]="user.password" placeholder="Password" />
+        <input type="password" [(ngModel)]="user.confirm_password" placeholder="Confirm Password" />
     </div>
   </div>
   <button (click)="save()" class="btn btn-success">Save</button>

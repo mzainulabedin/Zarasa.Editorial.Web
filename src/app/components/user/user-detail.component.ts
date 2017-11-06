@@ -57,6 +57,10 @@ export class UserDetailComponent implements OnInit {
 
   save(): void {
     if (this.isNewRecord) {
+      if (this.user.password !== this.user.confirm_password) {
+        this.alertService.error('password and confirm password not same');
+        return;
+      }
       // add the record
       this.userService.insert(this.user).subscribe((entityResponse: EntityResponse<User>) => {
         this.user = entityResponse.data;
@@ -67,7 +71,7 @@ export class UserDetailComponent implements OnInit {
       }, (error: Error) => {
         // errorResponse = new ErrorResponse(error);
         // this.statusMessage = this.errorResponse.message;
-        this.alertService.error(new ErrorResponse(error).message);
+        this.alertService.errorResponse(new ErrorResponse(error));
         // $('.alert-danger').fadeIn().show().delay(5000).fadeOut();
       });
     } else {
@@ -80,7 +84,7 @@ export class UserDetailComponent implements OnInit {
       }, (error: Error) => {
         // this.errorResponse = new ErrorResponse(error);
         // this.statusMessage = this.errorResponse.message;
-        this.alertService.error(new ErrorResponse(error).message);
+        this.alertService.errorResponse(new ErrorResponse(error));
         // $('.alert-danger').fadeIn().show().delay(5000).fadeOut();
       });
     }
