@@ -19,7 +19,7 @@ import { AuthService } from '../../services/auth.service';
 
 
 @Injectable()
-export class UserService extends EntityService {
+export class UserService extends EntityService<User> {
 
   constructor(protected http: Http, protected router: Router, protected authService: AuthService) {
     super(http, router, authService);

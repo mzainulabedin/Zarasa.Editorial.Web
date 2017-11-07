@@ -2,8 +2,12 @@
 .login-box {
   width: 360px;
   margin: 7% auto;
-  background-color: #6f2731;
+  /* background-color: #FF3500; */
+  /* background-color: #FD8300; */
+  background-color: #3BC400;
   padding: 10px 10px;
+  border: #FD8300 solid 4px;
+  box-shadow: 4px 4px 2px #888888;
 }
 
 .login-box .input-group, .login-box button {

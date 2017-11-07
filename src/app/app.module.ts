@@ -24,6 +24,9 @@ import { AuthService } from './services/auth.service';
 import { AuthGuard } from './auth.guard';
 import { AdminComponent } from './admin/components/app/admin.component';
 import { AdminHomeComponent } from './admin/components/home/admin.home.component';
+import { JournalComponent } from './components/journal/journal.component';
+import { JournalService } from './services/journal.service';
+import { PaginationComponent } from './directives/pagination.component';
 
 @NgModule({
   declarations: [
@@ -35,11 +38,14 @@ import { AdminHomeComponent } from './admin/components/home/admin.home.component
 
     HomeComponent,
     LoginComponent,
+    JournalComponent,
+
     UserComponent,
     UserDetailComponent,
     AdminComponent,
     AdminHomeComponent,
 
+    PaginationComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +60,7 @@ import { AdminHomeComponent } from './admin/components/home/admin.home.component
     AuthGuard,
     AlertService,
     AuthService,
+    JournalService,
     UserService,
     ModalService
   ],
