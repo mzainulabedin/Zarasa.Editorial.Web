@@ -8,4 +8,5 @@ export class Journal extends Entity {
     detail: string;
     status: string;
     admin_email: string;
+    confirm_email: string;
 }

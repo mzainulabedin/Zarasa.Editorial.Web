@@ -11,4 +11,11 @@ export class HomeComponent  {
   @HostBinding('@fadeInAnimation') fadeInAnimation = true;
   @HostBinding('style.display') display = 'block';
   @HostBinding('style.position') position = 'relative';
+
+  constructor() {
+    if (localStorage.getItem('journalRoutes') !== null ) {
+      console.log('removing routes');
+      localStorage.removeItem('journalRoutes');
+    }
+  }
 }

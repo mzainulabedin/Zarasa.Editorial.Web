@@ -1,9 +1,9 @@
-<app-nav-bar></app-nav-bar>
 <h1>Journals</h1>
-<app-alert></app-alert>
-<a [routerLink]="['/journal-request']">Create a new Journal</a>
 
-<p>List of journals</p>
+<app-alert></app-alert>
+
+<p>List of Panding journals</p>
+
 <div class="input-group">
     <input [(ngModel)]="searchText" type="text" class="form-control" placeholder="Enter search text here ...." />
     <span class="input-group-btn">
@@ -18,12 +18,14 @@
         <tr>
             <th>Name</th>
             <th>Organization</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let journal of journals">
             <td><a (click)="gotoDetail(journal.id)">{{ journal.name }}</a></td>
             <td>{{ journal.organization_name }}</td>
+            <td><a (click)="activate(journal.id)">Activate</a></td>
         </tr>
     </tbody>
 </table>

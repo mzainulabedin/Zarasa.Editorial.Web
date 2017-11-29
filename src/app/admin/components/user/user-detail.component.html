@@ -1,19 +1,7 @@
 <div *ngIf="user">
   <h2>User Detail</h2>
   <app-alert></app-alert>
-  <!-- <div  class="alert alert-danger alert-dismissable" style="display: none;">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-      <b>{{statusMessage}}</b>
-        <ul *ngIf="errorResponse">
-          <li *ngFor="let error of errorResponse.errors">{{error.message}}</li>
-        </ul>
-    </div>
-    <div class="alert alert-success alert-dismissable" style="display: none;">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-      {{statusMessage}}
-    </div> -->
-  <!-- <div *ngIf="isError" class="alert alert-danger">{{statusMessage}}</div>
-    <div *ngIf="isSuccess" class="alert alert-success">{{statusMessage}}</div> -->
+
   <div>
     <label>id: </label>{{user.id}}
   </div>

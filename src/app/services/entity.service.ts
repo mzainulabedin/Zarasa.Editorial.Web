@@ -49,7 +49,7 @@ export abstract class EntityService<T> {
       });
   }
 
-  post(url: string, body: any, options?: RequestOptionsArgs): Observable<EntityResponse<T>> {
+  post(url: string, body: T, options?: RequestOptionsArgs): Observable<EntityResponse<T>> {
     // console.info(JSON.stringify(body));
     return this.http.post(url, JSON.stringify(body), options)
     .map(response => response.json())
@@ -59,7 +59,7 @@ export abstract class EntityService<T> {
     });
   }
 
-  put(url: string, body: any, options?: RequestOptionsArgs): Observable<EntityResponse<T>> {
+  put(url: string, body: T, options?: RequestOptionsArgs): Observable<EntityResponse<T>> {
     return this.http.put(url, JSON.stringify(body), options)
     .map(response => response.json())
     .catch((error: any) => {

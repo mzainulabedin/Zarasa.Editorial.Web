@@ -1,5 +1,5 @@
 import { Component, Inject, Injectable, OnInit, HostBinding, ViewChild, Output, EventEmitter } from '@angular/core';
-import { Router} from '@angular/router';
+import {Router, ActivatedRoute} from '@angular/router';
 import { Http } from '@angular/http';
 import { fadeInAnimation } from '../../animations/fade-in-animation';
 import { ErrorResponse } from '../../common/error-response';
@@ -7,6 +7,8 @@ import { EntityResponse } from '../../common/entity-response';
 import { JournalService } from '../../services/journal.service';
 import { Journal } from '../../models/journal';
 import { ModalService } from '../../services/modal.service';
+import { AlertService } from '../../services/alert.service';
+import { AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
 
 
 @Component({
@@ -16,7 +18,8 @@ import { ModalService } from '../../services/modal.service';
     providers: [JournalService],
     animations: [fadeInAnimation],
 })
-export class JournalComponent implements OnInit {
+export class JournalComponent implements OnInit, AfterViewInit {
+
 
     public title = 'Journals';
     public journals: Journal[];
@@ -35,11 +38,21 @@ export class JournalComponent implements OnInit {
     constructor(
       private userService: JournalService,
       private router: Router,
+      private route: ActivatedRoute,
+      private alertService: AlertService,
       private modalService: ModalService) {
     }
 
     ngOnInit(): void {
         this.getJournals(1, this.pageSize);
+
+    }
+
+    ngAfterViewInit(): void {
+      const msg =  this.route.snapshot.queryParams['msg'] || '';
+      if (msg != null) {
+        this.alertService.success(msg);
+      }
     }
 
     gotoDetail(id: number): void {
@@ -56,8 +69,6 @@ export class JournalComponent implements OnInit {
     }
 
     public currentPageChanged(event: any): void {
-      // this.currentSelectedPage = ' is : ' + event.page;
-      // this.currentItemsPerPage = ' is : ' +  event.itemsPerPage;
       this.getJournals(event.page, event.itemsPerPage, this.searchText);
     }
 

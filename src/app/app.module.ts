@@ -1,7 +1,7 @@
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, OnInit } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -27,6 +27,11 @@ import { AdminHomeComponent } from './admin/components/home/admin.home.component
 import { JournalComponent } from './components/journal/journal.component';
 import { JournalService } from './services/journal.service';
 import { PaginationComponent } from './directives/pagination.component';
+import { JournalAdminComponent } from './admin/components/journal/journal.component';
+import { JournalRequestComponent } from './components/journal/journal-request.component';
+import { JournalRegisterComponent } from './components/journal/journal-register.component';
+import { NavigatorComponent } from './components/navigator/navigator.component';
+
 
 @NgModule({
   declarations: [
@@ -37,13 +42,17 @@ import { PaginationComponent } from './directives/pagination.component';
     ModalComponent,
 
     HomeComponent,
+    NavigatorComponent,
     LoginComponent,
     JournalComponent,
+    JournalRequestComponent,
+    JournalRegisterComponent,
 
     UserComponent,
     UserDetailComponent,
     AdminComponent,
     AdminHomeComponent,
+    JournalAdminComponent,
 
     PaginationComponent
   ],
@@ -68,7 +77,11 @@ import { PaginationComponent } from './directives/pagination.component';
     AppComponent
   ]
 })
-export class AppModule { }
+export class AppModule implements OnInit {
+  ngOnInit(): void {
+    console.log('working...');
+  }
+}
 
 export function getBaseUrl() {
   return document.getElementsByTagName('base')[0].href;

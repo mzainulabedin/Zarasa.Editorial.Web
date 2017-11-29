@@ -1,0 +1,37 @@
+<app-nav-bar></app-nav-bar>
+<form (ngSubmit)="save()" #testForm="ngForm" ngNativeValidate class="journal-reqest">
+
+  <h2>Request New Journal</h2>
+  <app-alert></app-alert>
+
+  <div>
+    <div class="input-group">
+      <label>Journal Name</label>
+      <input name="name" [(ngModel)]="journal.name" class="form-control" placeholder="Enter Name ..." required />
+    </div>
+    <div class="input-group">
+      <label>Journal Code</label>
+      <input name="code" [(ngModel)]="journal.code" class="form-control" placeholder="Enter Code ..." required />
+    </div>
+    <div class="input-group">
+      <label>Organization Name</label>
+      <input name="organization_name" [(ngModel)]="journal.organization_name" class="form-control" placeholder="Enter Organization ..." />
+    </div>
+    <div class="input-group">
+      <label>Detail About Journal</label>
+      <input name="detail" [(ngModel)]="journal.detail" class="form-control" placeholder="Enter Detail ..." />
+    </div>
+    <div class="input-group">
+      <label>Email</label>
+      <input name="email" type="email" [(ngModel)]="journal.admin_email" class="form-control" placeholder="Enter Email ..." required />
+    </div>
+    <div class="input-group">
+      <label>Confirm Email</label>
+      <input name="confirm_email" type="email" [(ngModel)]="journal.confirm_email" class="form-control" placeholder="Confirm Email" required />
+    </div>
+  </div>
+  <div class="input-group">
+    <button type="submit" class="btn btn-success">Save</button>
+    <button (click)="goBack()" class="btn btn-default">Back</button>
+  </div>
+</form>

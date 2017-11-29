@@ -11,4 +11,6 @@ export class AdminHomeComponent  {
   @HostBinding('@fadeInAnimation') fadeInAnimation = true;
   @HostBinding('style.display') display = 'block';
   @HostBinding('style.position') position = 'relative';
+
+
 }
