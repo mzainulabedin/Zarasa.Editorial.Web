@@ -1,0 +1,41 @@
+<h1>Users</h1>
+<!-- <app-alert></app-alert> -->
+
+
+<div class="table-title-container">
+  <p><a [routerLink]="['/admin/user-detail']">Add User</a></p>
+    <mat-form-field class="search-form-field">
+      <input matInput [(ngModel)]="searchText" type="text" placeholder="Enter search text here ...." aria-label="Enter search text here ...."
+        (change)="search()" />
+      <button mat-button matSuffix mat-icon-button type="button" (click)="search()">
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-form-field>
+</div>
+<p *ngIf="!users">
+  <em>Loading...</em>
+</p>
+
+<table class='table' *ngIf="users" matSort (matSortChange)="sortData($event)">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th mat-sort-header="first_name">Name</th>
+      <th mat-sort-header="email">Email</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.id }}</td>
+      <td><a (click)="gotoDetail(user.id)">{{ user.first_name }} {{ user.last_name }}</a></td>
+      <td>{{ user.email }}</td>
+      <td>
+        <a (click)="delete(user.id)">Delete</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<mat-paginator [length]="totalRecords" [pageSize]="pageSize"  [pageIndex]="pageNumber"
+  (page)="currentPageChanged($event)">
+</mat-paginator>

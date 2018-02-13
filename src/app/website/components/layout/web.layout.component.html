@@ -1,0 +1,65 @@
+<div class="layout-content">
+  <div class="background-content">
+  </div>
+
+  <div class="header-content">
+    <span class="title">
+      Editorial Management
+    </span>
+    <span class="subtitle">
+      Overseeing of all editorial content and manage them.
+    </span>
+    <div class="menu-bar">
+      <mat-toolbar>
+        <button mat-button (click)="redirect('./home')">
+          <mat-icon>home</mat-icon>
+          <span>Home</span>
+        </button>
+        <button mat-button (click)="redirect('./journal')">
+          <mat-icon>view_module</mat-icon>
+          <span>Journal</span>
+        </button>
+        <button mat-button (click)="redirect('./about')">
+          <mat-icon>business</mat-icon>
+          <span>About us</span>
+        </button>
+        <!-- This fills the remaining space of the current row -->
+        <span class="example-fill-remaining-space"></span>
+
+        <button mat-button class="signin-menu" (click)="redirect('./login')">
+          <mat-icon>vpn_key</mat-icon>
+          <span class="hideable-menu">Sign In</span>
+        </button>
+
+        <div class="profile-menu">
+          <button mat-button class="profile-menu">
+            <mat-icon>face</mat-icon>
+            <span class="hideable-menu" [matMenuTriggerFor]="menu">Profile</span>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-button>
+              <mat-icon>face</mat-icon>
+              <span>View Detail</span>
+            </button>
+            <button mat-button>
+              <mat-icon>vpn_key</mat-icon>
+              <span>Change Password</span>
+            </button>
+            <button mat-button>
+              <mat-icon>exit_to_app</mat-icon>
+              <span>Sign Out</span>
+            </button>
+          </mat-menu>
+        </div>
+      </mat-toolbar>
+    </div>
+  </div>
+
+  <div class="body-content">
+    <router-outlet #route="outlet"></router-outlet>
+  </div>
+
+  <div class="footer-content">
+
+  </div>
+</div>

@@ -1,0 +1,76 @@
+@import "variables";
+@import "admin-header-content";
+@import "admin-footer-content";
+.skin-blue .admin-layout-content {
+
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+
+  table {
+    width: 100%;
+    border-spacing: 0;
+    thead > tr {
+      border-bottom: 2px solid #555;
+    }
+    thead > tr > th {
+      text-align: start;
+      padding: 5px;
+      border-bottom: 2px solid #555;
+    }
+    thead > tr > th button.mat-sort-header-button{
+      text-decoration: underline;
+    }
+    tbody > tr {
+      border-bottom: 1px solid #BBB;
+    }
+    tbody > tr > td {
+      padding: 5px;
+      border-bottom: 1px solid #BBB;
+    }
+    tbody > tr:first-child > td{
+      padding-top: 20px;
+    }
+    tbody > tr:hover > td{
+      background-color: #EEE
+    }
+  }
+
+  .layout-content.body-content {
+    flex: 1 1 100%;
+    a {
+      color: $link-color;
+    }
+    a:hover {
+      background-color: $primary-theme-color * 0.8;
+      color: #fff;
+    }
+    .mat-drawer {
+      width: 250px;
+      // background: linear-gradient(to left, $secondary-theme-color, $primary-theme-color);
+      background-color: $primary-theme-color;
+      // box-shadow: 4px 0px 3px rgba(10, 10, 10, 0.5);
+      a, a span{
+        color: $tertiary-color;
+      }
+    }
+
+    .mat-drawer-container {
+      // z-index: -1;
+      height: 100%;
+    }
+    .mat-drawer-content{
+      padding: 20px 20px;
+    }
+  }
+
+  .input-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .input-group > * {
+    width: 100%;
+  }
+
+}

@@ -1,0 +1,33 @@
+<mat-toolbar>
+    <div class="admin-logo">
+      <span (click)="redirect('./admin')">
+        Editorial Management
+      </span>
+    </div>
+    <button mat-button (click)="menuClick('menu')">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <span class="example-fill-remaining-space"></span>
+
+    <div class="profile-menu">
+      <button mat-button class="profile-menu">
+        <mat-icon>perm_identity</mat-icon>
+        <span class="hideable-menu" [matMenuTriggerFor]="menu">Profile</span>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-button>
+          <mat-icon>face</mat-icon>
+          <span>View Detail</span>
+        </button>
+        <button mat-button>
+          <mat-icon>vpn_key</mat-icon>
+          <span>Change Password</span>
+        </button>
+        <button mat-button>
+          <mat-icon>exit_to_app</mat-icon>
+          <span>Sign Out</span>
+        </button>
+      </mat-menu>
+    </div>
+  </mat-toolbar>

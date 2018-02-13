@@ -1,0 +1,32 @@
+<!-- <app-nav-bar></app-nav-bar> -->
+<h1>Journals</h1>
+<!-- <app-alert></app-alert> -->
+<div class="action-group">
+  <a [routerLink]="['/journal-request']">Request new Journal</a>
+</div>
+
+<mat-form-field class="example-form-field">
+    <input matInput [(ngModel)]="searchText" type="text" placeholder="Enter search text here ...." 
+    aria-label="Enter search text here ...." (change)="search()" />
+    <button mat-button matSuffix mat-icon-button  type="button" (click)="search()">
+      <mat-icon>search</mat-icon>
+    </button>
+</mat-form-field>
+
+<p *ngIf="!journals">
+  <em>Loading...</em>
+</p>
+
+<table class='table' *ngIf="journals">
+  <tbody>
+    <tr *ngFor="let journal of journals">
+      <td>
+        <a href="#" (click)="gotoDetail(journal.id)">{{ journal.name }}</a>
+        <span>{{ journal.organization_name }}</span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<mat-paginator [length]="totalRecords" [pageSize]="pageSize"  [pageIndex]="pageNumber"
+  (page)="currentPageChanged($event)">
+</mat-paginator>

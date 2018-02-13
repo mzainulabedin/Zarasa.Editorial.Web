@@ -1,88 +1,100 @@
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, OnInit } from '@angular/core';
+import { NgModule, OnInit, Inject } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-
-import { AppComponent } from './components/app/app.component';
-import { NavMenuComponent } from './admin/components/navmenu/navmenu.component';
-import { HomeComponent } from './components/home/home.component';
-import { UserComponent } from './admin/components/user/user.component';
-import { UserDetailComponent } from './admin/components/user/user-detail.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
-import { AlertComponent } from './directives/alert.component';
-import { AlertService } from './services/alert.service';
-import { UserService } from './admin/services/user.service';
-import { BsModalComponent, BsModalBodyComponent, BsModalHeaderComponent, BsModalFooterComponent, BsModalService } from 'ng2-bs3-modal';
-import { ModalComponent } from './directives/modal.component';
-import { ModalService } from './services/modal.service';
-import { LoginComponent } from './components/auth/login.component';
-import { NavBarComponent } from './components/layouts/navbar.component';
-import { AuthService } from './services/auth.service';
-import { AuthGuard } from './auth.guard';
-import { AdminComponent } from './admin/components/app/admin.component';
+import { DOCUMENT } from '@angular/platform-browser';
+
+import { MatToolbarModule, MatDialog } from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatInputModule } from '@angular/material/input';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatSortModule } from '@angular/material/sort';
+import { MatDialogModule } from '@angular/material/dialog';
+
+import { RootLayoutComponent } from './layout/root.layout.component';
+import { HomeComponent } from './website/components/home/home.component';
+import { AboutComponent } from './website/components/about/about.component';
+import { WebLayoutComponent } from './website/components/layout/web.layout.component';
+import { JournalComponent } from './website/components/journal/journal.component';
+import { AuthService } from './common/services/auth.service';
+import { JournalService } from './website/services/journal.service';
+import { LoginComponent } from './website/components/auth/login.component';
+import { AdminLayoutComponent } from './admin/components/layout/admin.layout.component';
+import { AdminHeaderComponent } from './admin/components/layout/admin.header.component';
+import { AdminDrawerComponent } from './admin/components/layout/admin.drawer.component';
 import { AdminHomeComponent } from './admin/components/home/admin.home.component';
-import { JournalComponent } from './components/journal/journal.component';
-import { JournalService } from './services/journal.service';
-import { PaginationComponent } from './directives/pagination.component';
-import { JournalAdminComponent } from './admin/components/journal/journal.component';
-import { JournalRequestComponent } from './components/journal/journal-request.component';
-import { JournalRegisterComponent } from './components/journal/journal-register.component';
-import { NavigatorComponent } from './components/navigator/navigator.component';
+import { AdminFooterComponent } from './admin/components/layout/admin.footer.component';
+import { AdminUserComponent } from './admin/components/user/admin.user.component';
+import { AdminUserDetailComponent } from './admin/components/user/admin.user-detail.component';
+import { CustomSnackBarComponent } from './common/components/custom.snackbar.component';
+import { ConfirmationDialogComponent } from './common/components/confirmation.dialog.component';
+
+
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    NavBarComponent,
-    NavMenuComponent,
-    AlertComponent,
-    ModalComponent,
-
+    RootLayoutComponent,
     HomeComponent,
-    NavigatorComponent,
-    LoginComponent,
+    AboutComponent,
     JournalComponent,
-    JournalRequestComponent,
-    JournalRegisterComponent,
-
-    UserComponent,
-    UserDetailComponent,
-    AdminComponent,
+    LoginComponent,
+    WebLayoutComponent,
+    AdminLayoutComponent,
     AdminHomeComponent,
-    JournalAdminComponent,
+    AdminHeaderComponent,
+    AdminDrawerComponent,
+    AdminFooterComponent,
+    AdminUserComponent,
+    AdminUserDetailComponent,
 
-    PaginationComponent
+    CustomSnackBarComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
     CommonModule,
     HttpModule,
     FormsModule,
-    AppRoutingModule,
-    BrowserAnimationsModule
+    ReactiveFormsModule,
+
+    MatToolbarModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatIconModule,
+    MatPaginatorModule,
+    MatInputModule,
+    MatSnackBarModule,
+    MatSidenavModule,
+    MatListModule,
+    MatSortModule,
+    MatDialogModule
   ],
   providers: [
-    { provide: 'BASE_URL', useFactory: getBaseUrl },
-    AuthGuard,
-    AlertService,
     AuthService,
-    JournalService,
-    UserService,
-    ModalService
+    JournalService
   ],
-  bootstrap: [
-    AppComponent
-  ]
+
+  bootstrap: [RootLayoutComponent],
+  entryComponents: [CustomSnackBarComponent, ConfirmationDialogComponent]
 })
 export class AppModule implements OnInit {
+  constructor (
+    @Inject( DOCUMENT ) private document) {
+    }
+
   ngOnInit(): void {
     console.log('working...');
+    this.document.body.className = 'skin-blue';
   }
-}
-
-export function getBaseUrl() {
-  return document.getElementsByTagName('base')[0].href;
 }

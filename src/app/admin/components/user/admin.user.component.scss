@@ -1,0 +1,16 @@
+.table-title-container {
+  display: inline-block;
+  width: 100%;
+  // border: 1px solid red;
+
+}
+.table-title-container p{
+  float:left;
+}
+.table-title-container .search-form-field{
+  float:right;
+}
+
+table tbody td a:hover {
+  cursor: pointer;
+}
