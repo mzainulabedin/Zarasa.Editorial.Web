@@ -6,6 +6,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { DOCUMENT } from '@angular/platform-browser';
+import { CustomSnackBarComponent } from './common/components/custom.snackbar.component';
+import { ConfirmationDialogComponent } from './common/components/confirmation.dialog.component';
 
 import { MatToolbarModule, MatDialog } from '@angular/material';
 import { MatButtonModule } from '@angular/material/button';
@@ -18,6 +20,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatTableModule } from '@angular/material/table';
 
 import { RootLayoutComponent } from './layout/root.layout.component';
 import { HomeComponent } from './website/components/home/home.component';
@@ -34,14 +37,18 @@ import { AdminHomeComponent } from './admin/components/home/admin.home.component
 import { AdminFooterComponent } from './admin/components/layout/admin.footer.component';
 import { AdminUserComponent } from './admin/components/user/admin.user.component';
 import { AdminUserDetailComponent } from './admin/components/user/admin.user-detail.component';
-import { CustomSnackBarComponent } from './common/components/custom.snackbar.component';
-import { ConfirmationDialogComponent } from './common/components/confirmation.dialog.component';
+
+import { AdminJournalComponent } from './admin/components/journal/admin.journal.component';
+import { AuthGuard } from './auth.guard';
 
 
 
 
 @NgModule({
   declarations: [
+    CustomSnackBarComponent,
+    ConfirmationDialogComponent,
+
     RootLayoutComponent,
     HomeComponent,
     AboutComponent,
@@ -55,9 +62,8 @@ import { ConfirmationDialogComponent } from './common/components/confirmation.di
     AdminFooterComponent,
     AdminUserComponent,
     AdminUserDetailComponent,
+    AdminJournalComponent
 
-    CustomSnackBarComponent,
-    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -78,11 +84,13 @@ import { ConfirmationDialogComponent } from './common/components/confirmation.di
     MatSidenavModule,
     MatListModule,
     MatSortModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTableModule
   ],
   providers: [
     AuthService,
-    JournalService
+    JournalService,
+    AuthGuard
   ],
 
   bootstrap: [RootLayoutComponent],

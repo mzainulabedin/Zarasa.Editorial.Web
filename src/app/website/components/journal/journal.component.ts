@@ -45,7 +45,7 @@ export class JournalComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit(): void {
-        this.getJournals(0, this.pageSize);
+        this.getJournals(1, this.pageSize);
 
     }
 
@@ -60,21 +60,21 @@ export class JournalComponent implements OnInit, AfterViewInit {
         this.router.navigate(['/admin/journal-detail', id]);
     }
 
-    getJournals(page: number, size: number, name: string = ''): void {
-        this.userService.getJournals(page + 1, size, name).subscribe(result => {
+    getJournals(page: number, size: number, searchStr: string = ''): void {
+        this.userService.getJournals(page, size, searchStr).subscribe(result => {
           this.journals = result.data;
-          this.pageNumber = result.pageNumber - 1;
+          this.pageNumber = result.pageNumber;
           this.pageSize = result.pageSize;
           this.totalRecords = result.totalRecords;
         });
     }
 
     public currentPageChanged(event: any): void {
-      this.getJournals(event.pageIndex, event.pageSize, this.searchText);
+      this.getJournals(event.pageIndex + 1, event.pageSize, this.searchText);
     }
 
     search(): void {
-      this.getJournals(this.pageNumber, this.pageSize, this.searchText);
+      this.getJournals(1, this.pageSize, this.searchText);
     }
 }
 

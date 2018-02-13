@@ -11,11 +11,11 @@
     <span class="example-fill-remaining-space"></span>
 
     <div class="profile-menu">
-      <button mat-button class="profile-menu">
+      <button mat-button [matMenuTriggerFor]="profileMenu">
         <mat-icon>perm_identity</mat-icon>
-        <span class="hideable-menu" [matMenuTriggerFor]="menu">Profile</span>
+        <span class="hideable-menu" >Profile</span>
       </button>
-      <mat-menu #menu="matMenu">
+      <mat-menu #profileMenu="matMenu">
         <button mat-button>
           <mat-icon>face</mat-icon>
           <span>View Detail</span>

@@ -2,7 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { Http, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
-import {Headers} from '@angular/http';
+import { Headers } from '@angular/http';
 // Import RxJs required methods
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -27,54 +27,46 @@ export class AdminUserService extends EntityService<AdminUser> {
   }
 
 
-    getUsers(page: number, size: number, searchString: string, orderBy: string,
-        orderByDirection: string): Observable<EntityListResponse<AdminUser>> {
-      const options = new RequestOptions({ headers: this.getJsonAuthHeader() });
-      let queryString = '?page=' + page + '&size=' + size;
-      if (searchString !== null && searchString !== '') {
-        queryString += '&searchString=' + searchString;
-      }
-      if (orderBy !== null && orderBy !== '') {
-        queryString += '&orderBy=' + orderBy;
-      }
-      if (orderByDirection !== null && orderByDirection !== '') {
-        queryString += '&orderByDirection=' + orderByDirection;
-      }
-      return this.get(this.getBaseUrl() + 'api/user' + queryString, options)
-        .map(response => response)
-        .catch((error: any) => Observable.throw(error.json().message || 'Server error'));
-    }
+  getUsers(page: number, size: number, searchString: string, orderBy: string,
+    orderByDirection: string): Observable<EntityListResponse<AdminUser>> {
+    const options = new RequestOptions({ headers: this.getJsonAuthHeader() });
 
-    getUser(id: number): Observable<EntityResponse<AdminUser>> {
-        const options = new RequestOptions({ headers: this.getJsonAuthHeader() });
-        return this.get(this.getBaseUrl() + 'api/user/' + id, options)
-        .map(response => response)
-        .catch((error: any) => Observable.throw(error));
-    }
+    return this.getPagedList(this.getBaseUrl() + 'api/user', page, size, searchString,
+      orderBy, orderByDirection, options)
+      .map(response => response)
+      .catch((error: Error) => Observable.throw(error.message));
+  }
 
-    insert(user: AdminUser): Observable<EntityResponse<AdminUser>> {
-        const options = new RequestOptions({ headers: this.getJsonAuthHeader() });
-        return this.post(this.getBaseUrl() + `api/user/`, user, options)
-        .map(response => response)
-        .catch((error: any) => Observable.throw(error));
-        // return new Observable<User>();
-    }
+  getUser(id: number): Observable<EntityResponse<AdminUser>> {
+    const options = new RequestOptions({ headers: this.getJsonAuthHeader() });
+    return this.get(this.getBaseUrl() + 'api/user/' + id, options)
+      .map(response => response)
+      .catch((error: any) => Observable.throw(error));
+  }
 
-    update(user: AdminUser): Observable<EntityResponse<AdminUser>> {
-        const options = new RequestOptions({ headers: this.getJsonAuthHeader() });
-        return this.put(this.getBaseUrl() + `api/user/` + user.id, user, options)
-        .map(response => response)
-        .catch(error => Observable.throw(error));
+  insert(user: AdminUser): Observable<EntityResponse<AdminUser>> {
+    const options = new RequestOptions({ headers: this.getJsonAuthHeader() });
+    return this.post(this.getBaseUrl() + `api/user/`, user, options)
+      .map(response => response)
+      .catch((error: any) => Observable.throw(error));
+    // return new Observable<User>();
+  }
 
-        // return new Observable<User>();
-    }
-
-    remove(id: number): Observable<EntityResponse<AdminUser>> {
-      const options = new RequestOptions({ headers: this.getJsonAuthHeader() });
-      return this.delete(this.getBaseUrl() + `api/user/` + id, options)
+  update(user: AdminUser): Observable<EntityResponse<AdminUser>> {
+    const options = new RequestOptions({ headers: this.getJsonAuthHeader() });
+    return this.put(this.getBaseUrl() + `api/user/` + user.id, user, options)
       .map(response => response)
       .catch(error => Observable.throw(error));
-    }
+
+    // return new Observable<User>();
+  }
+
+  remove(id: number): Observable<EntityResponse<AdminUser>> {
+    const options = new RequestOptions({ headers: this.getJsonAuthHeader() });
+    return this.delete(this.getBaseUrl() + `api/user/` + id, options)
+      .map(response => response)
+      .catch(error => Observable.throw(error));
+  }
 
 
 }

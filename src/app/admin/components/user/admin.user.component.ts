@@ -40,16 +40,16 @@ export class AdminUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getUsers(0, this.pageSize);
+    this.getUsers(1, this.pageSize);
   }
 
   gotoDetail(id: number): void {
     this.router.navigate(['/admin/user-detail', id]);
   }
   getUsers(page: number, size: number, searchString: string = '', orderBy: string = '', orderByDirection: string = ''): void {
-    this.userService.getUsers(page + 1, size, searchString, orderBy, orderByDirection).subscribe(result => {
+    this.userService.getUsers(page, size, searchString, orderBy, orderByDirection).subscribe(result => {
       this.users = result.data;
-      this.pageNumber = result.pageNumber - 1;
+      this.pageNumber = result.pageNumber;
       this.pageSize = result.pageSize;
       this.totalRecords = result.totalRecords;
     });
@@ -74,11 +74,11 @@ export class AdminUserComponent implements OnInit {
   }
 
   currentPageChanged(event: any): void {
-    this.getUsers(event.pageIndex, event.pageSize, this.searchText, this.orderBy, this.orderByDirection);
+    this.getUsers(event.pageIndex + 1, event.pageSize, this.searchText, this.orderBy, this.orderByDirection);
   }
 
   search(): void {
-    this.getUsers(0, this.pageSize, this.searchText);
+    this.getUsers(1, this.pageSize, this.searchText);
   }
 
   sortData(sort: Sort) {

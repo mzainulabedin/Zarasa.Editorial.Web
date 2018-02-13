@@ -10,6 +10,8 @@ import { AdminLayoutComponent } from './admin/components/layout/admin.layout.com
 import { AdminHomeComponent } from './admin/components/home/admin.home.component';
 import { AdminUserComponent } from './admin/components/user/admin.user.component';
 import { AdminUserDetailComponent } from './admin/components/user/admin.user-detail.component';
+import { AdminJournalComponent } from './admin/components/journal/admin.journal.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
 
@@ -20,12 +22,13 @@ const routes: Routes = [
     { path: 'about', component: AboutComponent, data: { depth: '1' } },
     { path: 'login', component: LoginComponent, data: { depth: '1' } },
   ]},
-  { path: 'admin', component: AdminLayoutComponent, children: [
+  { path: 'admin', component: AdminLayoutComponent, canActivate: [AuthGuard], children: [
     { path: '', redirectTo: 'home', pathMatch: 'prefix'},
     { path: 'home', component: AdminHomeComponent, data: { depth: '1' } },
     { path: 'user', component: AdminUserComponent, data: { depth: '2' } },
     { path: 'user-detail', component: AdminUserDetailComponent, data: { depth: '2' } },
-    { path: 'user-detail/:id', component: AdminUserDetailComponent, data: { depth: '1' } }
+    { path: 'user-detail/:id', component: AdminUserDetailComponent, data: { depth: '1' } },
+    { path: 'journal', component: AdminJournalComponent, data: { depth: '1' }},
   ]},
 ];
 

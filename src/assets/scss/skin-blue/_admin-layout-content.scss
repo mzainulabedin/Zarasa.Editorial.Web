@@ -41,7 +41,7 @@
     a {
       color: $link-color;
     }
-    a:hover {
+    a.mat-list-item:hover {
       background-color: $primary-theme-color * 0.8;
       color: #fff;
     }

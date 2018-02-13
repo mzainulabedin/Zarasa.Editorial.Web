@@ -1,6 +1,4 @@
 <h1>Users</h1>
-<!-- <app-alert></app-alert> -->
-
 
 <div class="table-title-container">
   <p><a [routerLink]="['/admin/user-detail']">Add User</a></p>
@@ -36,6 +34,6 @@
     </tr>
   </tbody>
 </table>
-<mat-paginator [length]="totalRecords" [pageSize]="pageSize"  [pageIndex]="pageNumber"
+<mat-paginator [length]="totalRecords" [pageSize]="pageSize"  [pageIndex]="pageNumber - 1"
   (page)="currentPageChanged($event)">
 </mat-paginator>

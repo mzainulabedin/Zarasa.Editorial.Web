@@ -6,8 +6,8 @@
 </div>
 
 <mat-form-field class="example-form-field">
-    <input matInput [(ngModel)]="searchText" type="text" placeholder="Enter search text here ...." 
-    aria-label="Enter search text here ...." (change)="search()" />
+    <input matInput [(ngModel)]="searchText" type="text" placeholder="Enter search text here ...."
+    aria-label="Enter search text here ...." (keyup)="search()" />
     <button mat-button matSuffix mat-icon-button  type="button" (click)="search()">
       <mat-icon>search</mat-icon>
     </button>
@@ -27,6 +27,6 @@
     </tr>
   </tbody>
 </table>
-<mat-paginator [length]="totalRecords" [pageSize]="pageSize"  [pageIndex]="pageNumber"
+<mat-paginator [length]="totalRecords" [pageSize]="pageSize"  [pageIndex]="pageNumber - 1"
   (page)="currentPageChanged($event)">
 </mat-paginator>
