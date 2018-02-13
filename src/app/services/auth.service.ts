@@ -19,7 +19,7 @@ export class AuthService {
     private baseUrl: string;
 
     constructor(private http: Http) {
-      this.baseUrl = 'http://localhost:4444/';
+      this.baseUrl = 'http://localhost:4100/';
       const currentUser = JSON.parse(localStorage.getItem('currentUser'));
       this.token = currentUser && currentUser.token;
     }

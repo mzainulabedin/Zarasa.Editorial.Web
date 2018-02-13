@@ -10,7 +10,7 @@ export abstract class EntityService<T> {
 
   private baseUrl: string;
   constructor(protected http: Http, protected router: Router, protected authService: AuthService = null) {
-    this.baseUrl = 'http://localhost:4444/';
+    this.baseUrl = 'http://localhost:4100/';
   }
 
 
