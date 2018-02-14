@@ -40,6 +40,7 @@ import { AdminUserDetailComponent } from './admin/components/user/admin.user-det
 
 import { AdminJournalComponent } from './admin/components/journal/admin.journal.component';
 import { AuthGuard } from './auth.guard';
+import { JournalRequestComponent } from './website/components/journal/journal-request.component';
 
 
 
@@ -62,8 +63,8 @@ import { AuthGuard } from './auth.guard';
     AdminFooterComponent,
     AdminUserComponent,
     AdminUserDetailComponent,
-    AdminJournalComponent
-
+    AdminJournalComponent,
+    JournalRequestComponent
   ],
   imports: [
     BrowserModule,

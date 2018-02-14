@@ -12,6 +12,7 @@ import { AdminUserComponent } from './admin/components/user/admin.user.component
 import { AdminUserDetailComponent } from './admin/components/user/admin.user-detail.component';
 import { AdminJournalComponent } from './admin/components/journal/admin.journal.component';
 import { AuthGuard } from './auth.guard';
+import { JournalRequestComponent } from './website/components/journal/journal-request.component';
 
 const routes: Routes = [
 
@@ -21,6 +22,7 @@ const routes: Routes = [
     { path: 'journal', component: JournalComponent, data: { depth: '1' } },
     { path: 'about', component: AboutComponent, data: { depth: '1' } },
     { path: 'login', component: LoginComponent, data: { depth: '1' } },
+    { path: 'journal-request', component: JournalRequestComponent, data: { depth: '2' } },
   ]},
   { path: 'admin', component: AdminLayoutComponent, canActivate: [AuthGuard], children: [
     { path: '', redirectTo: 'home', pathMatch: 'prefix'},
