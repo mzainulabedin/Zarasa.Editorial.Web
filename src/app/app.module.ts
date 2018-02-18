@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { DOCUMENT } from '@angular/platform-browser';
 import { CustomSnackBarComponent } from './common/components/custom.snackbar.component';
+import { ErrorSnackBarComponent } from './common/components/error.snackbar.component';
 import { ConfirmationDialogComponent } from './common/components/confirmation.dialog.component';
 
 import { MatToolbarModule, MatDialog } from '@angular/material';
@@ -41,13 +42,20 @@ import { AdminUserDetailComponent } from './admin/components/user/admin.user-det
 import { AdminJournalComponent } from './admin/components/journal/admin.journal.component';
 import { AuthGuard } from './auth.guard';
 import { JournalRequestComponent } from './website/components/journal/journal-request.component';
+import { NavigatorComponent } from './common/components/navigator.component';
+import { JournalRegisterComponent } from './website/components/journal/journal-register.component';
+import { Error404Component } from './common/components/error.404.component';
 
 
 
 
 @NgModule({
   declarations: [
+    NavigatorComponent,
+    Error404Component,
+
     CustomSnackBarComponent,
+    ErrorSnackBarComponent,
     ConfirmationDialogComponent,
 
     RootLayoutComponent,
@@ -64,7 +72,8 @@ import { JournalRequestComponent } from './website/components/journal/journal-re
     AdminUserComponent,
     AdminUserDetailComponent,
     AdminJournalComponent,
-    JournalRequestComponent
+    JournalRequestComponent,
+    JournalRegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -88,14 +97,24 @@ import { JournalRequestComponent } from './website/components/journal/journal-re
     MatDialogModule,
     MatTableModule
   ],
+
   providers: [
     AuthService,
     JournalService,
     AuthGuard
   ],
 
-  bootstrap: [RootLayoutComponent],
-  entryComponents: [CustomSnackBarComponent, ConfirmationDialogComponent]
+  bootstrap: [
+    RootLayoutComponent
+  ],
+
+  entryComponents: [
+    CustomSnackBarComponent,
+    ConfirmationDialogComponent,
+    ErrorSnackBarComponent,
+    NavigatorComponent,
+    JournalRegisterComponent
+  ]
 })
 export class AppModule implements OnInit {
   constructor (

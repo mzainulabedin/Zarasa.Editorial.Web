@@ -6,7 +6,10 @@ import { AdminJournalService } from '../../services/admin.journal.service';
 import { AdminJournal } from '../../models/admin.journal';
 import { EntityResponse } from '../../../common/responses/entity-response';
 import { ErrorResponse } from '../../../common/responses/error-response';
-import { MatTableDataSource, Sort } from '@angular/material';
+import { MatTableDataSource, Sort, MatDialog, MatSnackBar } from '@angular/material';
+import { ConfirmationDialogComponent } from '../../../common/components/confirmation.dialog.component';
+import { CustomSnackBarComponent } from '../../../common/components/custom.snackbar.component';
+import { ErrorSnackBarComponent } from '../../../common/components/error.snackbar.component';
 
 @Component ({
   selector: 'app-admin-journal',
@@ -35,7 +38,7 @@ export class AdminJournalComponent implements OnInit {
 
   constructor(
     private journalService: AdminJournalService,
-    private router: Router) {
+    private router: Router, private dialog: MatDialog, private snackBar: MatSnackBar) {
 
   }
 
@@ -73,21 +76,19 @@ export class AdminJournalComponent implements OnInit {
   }
 
   activate(id: number): void {
-    // this.modalService.confirmationDialog('Are you sure you want to <b>Activate</b> this <b>Journal</b>?')
-    // .show()
-    // .getAction().take(1).subscribe(response => {
-    //   if (response === ModalService.YES) {
-    //     this.activateJournal(id);
-    //   }
-    // });
-  }
-
-  private activateJournal(id: number): void {
-    this.journalService.activate(id).subscribe((entityResponse: EntityResponse<Boolean>) => {
-      // this.alertService.success(entityResponse.message);
-      this.search();
-    }, (error: Error) => {
-      // this.alertService.errorResponse(new ErrorResponse(error));
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: { title: 'Confirmation', message: 'Are you sure you want to Activate this Journal?' }
+    }).afterClosed().subscribe(result => {
+      if(result){
+        this.journalService.activate(id).subscribe((entityResponse: EntityResponse<Boolean>) => {
+          this.snackBar.openFromComponent(CustomSnackBarComponent,
+            { duration: 2000, panelClass: 'success-alert', announcementMessage: entityResponse.message });
+          this.search();
+        }, (error: Error) => {
+          this.snackBar.openFromComponent(ErrorSnackBarComponent,
+            { duration: 2000, panelClass: 'error-alert', announcementMessage: error.message });
+        });
+      }
     });
   }
 }

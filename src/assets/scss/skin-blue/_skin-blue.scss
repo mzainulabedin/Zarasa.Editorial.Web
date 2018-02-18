@@ -44,11 +44,14 @@
   }
 
   .success-alert {
-    background-color: #d9b08c;
-    color: #2c3531;
+    background-color: $tertiary-color;
+    color: $primary-color;
   }
   .error-alert {
-    background-color: #d9b08c;
+    background-color: $tertiary-color;
     color: red;
+  }
+  .error-alert .mat-custom-snackbar-action {
+    color: $primary-color;
   }
 }

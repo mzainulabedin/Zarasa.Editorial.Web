@@ -1,13 +1,13 @@
 <mat-nav-list #sideNavMenu>
-  <a mat-list-item [routerLink]="['/admin/home']">
+  <a mat-list-item [routerLink]="['/admin/home']" [routerLinkActive]="['link-active']">
     <mat-icon>home</mat-icon>
     <span>Home</span>
   </a>
-  <a mat-list-item [routerLink]="['/admin/user']">
+  <a mat-list-item [routerLink]="['/admin/user']" [routerLinkActive]="['link-active']">
     <mat-icon>supervisor_account</mat-icon>
     <span>Users</span>
   </a>
-  <a mat-list-item [routerLink]="['/admin/journal']">
+  <a mat-list-item [routerLink]="['/admin/journal']" [routerLinkActive]="['link-active']">
     <mat-icon>description</mat-icon>
     <span>Journals</span>
   </a>

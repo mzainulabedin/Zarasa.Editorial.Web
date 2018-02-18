@@ -41,10 +41,23 @@
     a {
       color: $link-color;
     }
+
     a.mat-list-item:hover {
       background-color: $primary-theme-color * 0.8;
       color: #fff;
     }
+    a.mat-list-item:hover span {
+      color: #fff;
+    }
+    a.mat-list-item.link-active {
+      background-color: $primary-theme-color * 0.5;
+      color: #fff;
+      border: 1px inset $primary-theme-color * 0.8;
+    }
+    a.mat-list-item.link-active span {
+      color: #fff;
+    }
+
     .mat-drawer {
       width: 250px;
       // background: linear-gradient(to left, $secondary-theme-color, $primary-theme-color);

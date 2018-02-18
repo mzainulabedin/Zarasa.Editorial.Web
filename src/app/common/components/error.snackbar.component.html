@@ -1,0 +1,9 @@
+<div class="mat-custom-snackbar">
+  {{message}}
+  <button mat-button (click)="dismiss()" class="mat-custom-snackbar-action">
+    <mat-icon matSuffix>close</mat-icon>
+  </button>
+</div>
+<ul *ngIf="data.errors">
+  <li *ngFor="let error of data.errors">{{error.message}}</li>
+</ul>

@@ -8,6 +8,7 @@ import { ConfirmationDialogComponent } from '../../../common/components/confirma
 import { EntityResponse } from '../../../common/responses/entity-response';
 import { CustomSnackBarComponent } from '../../../common/components/custom.snackbar.component';
 import { Location } from '@angular/common';
+import { ErrorSnackBarComponent } from '../../../common/components/error.snackbar.component';
 
 
 @Component ({
@@ -66,8 +67,8 @@ export class AdminUserComponent implements OnInit {
             { duration: 2000, panelClass: 'success-alert', announcementMessage: entityResponse.message });
           this.getUsers(0, this.pageSize);
         }, (error: Error) => {
-          this.snackBar.openFromComponent(CustomSnackBarComponent,
-            { duration: 2000, panelClass: 'success-alert', announcementMessage: error.message });
+          this.snackBar.openFromComponent(ErrorSnackBarComponent,
+            { duration: 2000, panelClass: 'error-alert', announcementMessage: error.message });
         });
       }
     });

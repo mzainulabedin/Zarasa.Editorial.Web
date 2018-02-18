@@ -9,6 +9,8 @@ import { MatSnackBar } from '@angular/material';
 import { FormControl, Validators } from '@angular/forms';
 import { ParseError } from '@angular/compiler';
 import { fadeInAnimation } from '../../../animations/fade-in-animation';
+import { ErrorSnackBarComponent } from '../../../common/components/error.snackbar.component';
+import { ErrorResponse } from '../../../common/responses/error-response';
 
 
 @Component({
@@ -44,20 +46,20 @@ export class JournalRequestComponent {
     if (this.journal.admin_email !== this.journal.confirm_email) {
       // this.alertService.error('Email and confirm Email not same');
       this.snackBar.openFromComponent(CustomSnackBarComponent
-        , { duration: 2000, panelClass: 'error-alert', announcementMessage: 'Email and confirm Email not same' });
+        , { duration: 5000, panelClass: 'error-alert', announcementMessage: 'Email and confirm Email not same' });
       return;
     }
     // add the record
     this.journalService.requestJournal(this.journal).subscribe((entityResponse: EntityResponse<Journal>) => {
       this.snackBar.openFromComponent(CustomSnackBarComponent
-        , { duration: 2000, panelClass: 'success-alert', announcementMessage: entityResponse.message })
+        , { duration: 5000, panelClass: 'success-alert', announcementMessage: entityResponse.message })
         .afterDismissed().subscribe(() => {
           this.router.navigate(['/journal']);
         });
       // this.router.navigate(['/journal'], { queryParams: { msg: entityResponse.message }});
     }, (error: Error) => {
-      this.snackBar.openFromComponent(CustomSnackBarComponent
-        , { duration: 2000, panelClass: 'error-alert', announcementMessage: error.message });
+      this.snackBar.openFromComponent(ErrorSnackBarComponent
+        , { duration: 5000, panelClass: 'error-alert', data: new ErrorResponse(error) });
     });
   }
 
