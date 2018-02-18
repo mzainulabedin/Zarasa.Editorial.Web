@@ -16,42 +16,28 @@ export class NavigatorComponent implements OnInit {
 
   async ngOnInit() {
     console.log('navigator');
-    if (localStorage.getItem('journalRoutes') === null) {
+    const subUrls = ['register'];
+    // if (localStorage.getItem('journalRoutes') === null) {
       const data = await this.routeJournals();
       localStorage.setItem('journalRoutes', JSON.stringify(data));
       // console.log(data);
+
       const url = this.router.url;
-      // const firstPartUrl = url.replace('/','').split('/')[0];
+      // // const firstPartUrl = url.replace('/','').split('/')[0];
       let isUrlExists = false;
       data.forEach((journal, index) => {
-        if(url.toLowerCase() == '/' + journal.code.toLowerCase() + '/register') {
-          isUrlExists = true;
-        }
-        this.router.config.push({ path: journal.code.toLowerCase() + '/register',
-        component: JournalRegisterComponent,
-          data: { depth: '1' } });
-      });
-
-      this.router.config.forEach((x, i) => {
-        // console.log(`${i}: ${JSON.stringify(x, undefined, 1)}`);
-        if ('/' + x.path == url) {
-          isUrlExists = true;
+        for (let subUrl of subUrls) {
+          if(url == '/' + journal.code.toLowerCase() + '/' + subUrl) {
+            isUrlExists = true;
+          }
         }
       });
-
       console.log('redirecting back to original');
-
-      console.log(url);
-      this.router.resetConfig(this.router.config);
-      // this.router.navigateByUrl(url);
-      // this.router.navigate([url]);
       if(isUrlExists){
         window.location.href = url;
       } else {
         this.router.navigate(['404']);
       }
-    }
-
   }
 
   async routeJournals() {

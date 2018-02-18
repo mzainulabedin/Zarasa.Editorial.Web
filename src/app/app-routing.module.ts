@@ -51,13 +51,7 @@ const routes: Routes = [
 export class AppRoutingModule {
 
   constructor(private router: Router, private routerModule: RouterModule, private journalService: JournalService) {
-    if (localStorage.getItem('journalRoutes') === null) {
-      console.log('redirecting to navigator');
-      router.config.push({
-        path: '**', component: NavigatorComponent,
-        data: { depth: '1', url: router.url }
-      });
-    } else {
+    if (localStorage.getItem('journalRoutes') !== null) {
       console.log('data already there');
       const data = JSON.parse(localStorage.getItem('journalRoutes'));
       data.forEach((journal, index) => {
@@ -66,11 +60,15 @@ export class AppRoutingModule {
           data: { depth: '1' }
         });
       });
-      localStorage.removeItem('journalRoutes');
+      router.config.push({
+        path: '**', component: NavigatorComponent, data: { depth: '1', url: router.url }
+      });
+      // localStorage.removeItem('journalRoutes');
+    } else {
+      console.log('no data');
+      router.config.push({
+        path: '**', component: NavigatorComponent, data: { depth: '1', url: router.url }
+      });
     }
-  }
-  async routeJournals() {
-    const response = await this.journalService.getJournalCodes().toPromise();
-    return response.data;
   }
 }
