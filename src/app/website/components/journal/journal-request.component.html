@@ -1,0 +1,31 @@
+<form (ngSubmit)="save()" #testForm="ngForm" ngNativeValidate class="journal-reqest">
+
+  <h2>Request New Journal</h2>
+
+  <div *ngIf="journal">
+    <div class="input-group">
+      <mat-form-field>
+        <input matInput name="name" [(ngModel)]="journal.name" placeholder="Journal Name" required />
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput name="code" [(ngModel)]="journal.code" placeholder="Journal Code" required />
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput name="organization_name" [(ngModel)]="journal.organization_name" placeholder="Organization Name" />
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput name="detail" [(ngModel)]="journal.detail" placeholder="Detail About Journal" />
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [formControl]="emailFormControl"  type="email" [(ngModel)]="journal.admin_email" placeholder="Email" required />
+        <!-- <mat-error *ngIf="emailFormControl">{{getValidationMessage(emailFormControl, ['required', 'email'], ['You must enter a email','Not a valid email'])}}</mat-error> -->
+        <mat-error *ngIf="emailFormControl">{{getValidationMessage(emailFormControl, ['required', 'email'], ['You must enter a email','Not a valid email'])}}</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput name="confirm_email" type="email" [(ngModel)]="journal.confirm_email" placeholder="Confirm Email" required />
+      </mat-form-field>
+    </div>
+    <button mat-raised-button color="primary" type="submit">Save</button>
+    <button mat-raised-button (click)="goBack()">Back</button>
+  </div>
+</form>

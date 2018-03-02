@@ -1,0 +1,9 @@
+@import "variables";
+
+.skin-blue .admin-layout-content .footer-content {
+  flex: 0 1 40px;
+  color: $secondary-color;
+  z-index: 2;
+  background-color: $secondary-theme-color; //linear-gradient(to bottom, $secondary-theme-color, $primary-theme-color);
+  box-shadow: 0 -4px 4px $primary-shadow-color;
+}

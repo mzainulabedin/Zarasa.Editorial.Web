@@ -1,0 +1,57 @@
+@import "layout-content";
+@import "admin-layout-content";
+.skin-blue {
+  // $font-stack: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  $font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  $primary-color: #212529;
+  $secondary-color: #fff;
+  $background-color: #fff;
+  $secondary-background-color: #212529;
+  $primary-theme-color: #275883;
+  $secondary-theme-color: #1d4161;
+  $link-color: #3377ee;
+
+  height: 100%;
+  margin: 0;
+  font-family: $font-stack;
+  font-size: 11pt;
+  line-height: 1.42857143;
+  color: $primary-color;
+  background-color: $background-color;
+
+  .justified-right {
+    display: flex;
+    justify-content: flex-end;
+  }
+  a {
+    color: $link-color;
+  }
+  .background-content {
+    width: 100%;
+    height: 200px;
+    display: block;
+    position: absolute; // background-image: url("assets/images/header_image.jpg");
+    // background-image: url("assets/images/a.jpg");
+    // background-color: #275883;
+    background: linear-gradient(to bottom, $primary-theme-color, $secondary-theme-color);
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -1;
+    animation: fadein 3s;
+    @media (max-width: 720px) {
+      height: 150px;
+    }
+  }
+
+  .success-alert {
+    background-color: $tertiary-color;
+    color: $primary-color;
+  }
+  .error-alert {
+    background-color: $tertiary-color;
+    color: red;
+  }
+  .error-alert .mat-custom-snackbar-action {
+    color: $primary-color;
+  }
+}

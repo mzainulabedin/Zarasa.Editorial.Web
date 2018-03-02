@@ -1,0 +1,21 @@
+.mat-custom-snackbar {
+  display: flex;
+  justify-content: space-between;
+  line-height: 20px;
+  opacity: 1;
+  align-items: center;
+}
+.mat-custom-snackbar-action {
+  -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    outline: 0;
+    border: none;
+    -webkit-tap-highlight-color: transparent;
+    background: 0 0;
+    flex-shrink: 0;
+    margin-left: 48px;
+    line-height: unset;
+}

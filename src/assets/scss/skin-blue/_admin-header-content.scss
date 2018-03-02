@@ -1,0 +1,34 @@
+@import "variables";
+
+.skin-blue .admin-layout-content .header-content {
+  flex: 0 1 auto;
+  z-index: 2;
+  /* The above is shorthand for:
+  flex-grow: 0,
+  flex-shrink: 1,
+  flex-basis: auto
+  */
+
+  .mat-toolbar-single-row {
+    height: 50px;
+    align-items: unset;
+    padding: 0 0;
+    background-color: $secondary-theme-color;
+    box-shadow: 0px 4px 4px $primary-shadow-color;
+    color: $secondary-color;
+
+    .example-fill-remaining-space {
+      flex: 1 1 auto;
+    }
+  }
+  .admin-logo {
+    width: 250px; // background: linear-gradient(to left, $secondary-theme-color, $primary-theme-color);
+    background-color: $secondary-theme-color;
+  }
+  @media (max-width: 414px) {
+    .admin-logo {
+      display: none;
+    }
+  }
+  .profile-menu {display: flex;}
+}

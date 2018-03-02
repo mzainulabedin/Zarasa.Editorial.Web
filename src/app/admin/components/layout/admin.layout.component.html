@@ -1,0 +1,20 @@
+<div class="admin-layout-content">
+
+  <div class="layout-content header-content">
+    <app-admin-header (someEvent)="menuClick($event)"></app-admin-header>
+  </div>
+  <div class="layout-content body-content" (window:resize)="onResize($event)">
+    <mat-sidenav-container class="mat-drawer-container">
+      <mat-sidenav #sidenav class="mat-drawer" [mode]="sidenavMode()" [opened]="isSidenavOpened()">
+        <app-admin-drawer></app-admin-drawer>
+      </mat-sidenav>
+      <mat-sidenav-content class="mat-drawer-content">
+        <router-outlet #route="outlet"></router-outlet>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
+  <div class="layout-content footer-content">
+      <app-admin-footer></app-admin-footer>
+  </div>
+
+</div>

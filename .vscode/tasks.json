@@ -3,7 +3,6 @@
   "tasks": [
     {
       "identifier": "ng serve",
-
       "type": "npm",
       "script": "start",
       "problemMatcher": [],

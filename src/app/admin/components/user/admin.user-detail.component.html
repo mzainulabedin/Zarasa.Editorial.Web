@@ -1,0 +1,28 @@
+<div *ngIf="user">
+  <h2>User Detail</h2>
+
+  <div>
+    <div class="input-group">
+      <mat-form-field>
+        <input matInput [(ngModel)]="user.first_name" placeholder="First Name" required />
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [(ngModel)]="user.last_name" placeholder="Last Name" required />
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="email" [(ngModel)]="user.email" placeholder="Email Address" required />
+      </mat-form-field>
+    </div>
+    <div *ngIf="isNewRecord" class="input-group">
+      <mat-form-field hintLabel="Minimum 5 characters">
+        <input matInput #password minlength="5" type="password" [(ngModel)]="user.password" placeholder="Password" required />
+        <mat-hint align="end">{{password.value?.length || 0}}/6</mat-hint>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="password" [(ngModel)]="user.confirm_password" placeholder="Confirm Password" required />
+      </mat-form-field>
+    </div>
+  </div>
+  <button mat-raised-button color="primary" (click)="save()" class="btn btn-success">Save</button>
+  <button mat-raised-button (click)="goBack()" class="btn btn-default">Back</button>
+</div>
